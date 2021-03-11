@@ -551,8 +551,7 @@ class _ZoomDrawerState extends State<ZoomDrawer>
   }
 
   Widget renderStyle8() {
-    final rightSlide = MediaQuery.of(context).size.width *
-        ((MediaQuery.of(context).size.width > 600) ? .2 : 0.6);
+    final rightSlide = 200;
     return AnimatedBuilder(
       animation: _animationController!,
       builder: (context, child) {
