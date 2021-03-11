@@ -551,7 +551,7 @@ class _ZoomDrawerState extends State<ZoomDrawer>
   }
 
   Widget renderStyle8() {
-    final rightSlide = 200;
+    final rightSlide = 200.0;
     return AnimatedBuilder(
       animation: _animationController!,
       builder: (context, child) {
