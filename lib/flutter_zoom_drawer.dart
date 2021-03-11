@@ -293,6 +293,8 @@ class _ZoomDrawerState extends State<ZoomDrawer>
         return renderStyle6();
       case DrawerStyle.Style7:
         return renderStyle7();
+      case DrawerStyle.Style8:
+        return renderStyle8();
       default:
         return renderDefault();
     }
@@ -547,6 +549,34 @@ class _ZoomDrawerState extends State<ZoomDrawer>
       },
     );
   }
+
+  Widget renderStyle8() {
+    final rightSlide = MediaQuery.of(context).size.width * (kIsWeb ? .3 : 0.6);
+    return AnimatedBuilder(
+      animation: _animationController!,
+      builder: (context, child) {
+        double slide = rightSlide * _animationController!.value;
+        double left = (1 - _animationController!.value) * rightSlide;
+
+        return Stack(
+          children: [
+            Transform(
+              transform: Matrix4.identity()..translate(slide),
+              alignment: Alignment.center,
+              child: widget.mainScreen,
+            ),
+            Transform.translate(
+              offset: Offset(-left, 0),
+              child: Container(
+                width: rightSlide,
+                child: widget.menuScreen,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
 /// Drawer State enum
@@ -560,5 +590,6 @@ enum DrawerStyle {
   Style4,
   Style5,
   Style6,
-  Style7
+  Style7,
+  Style8,
 }
